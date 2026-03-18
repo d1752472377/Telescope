@@ -50,7 +50,7 @@ export default function Servers() {
   const [connectError, setConnectError] = useState('')
 
   useEffect(() => {
-    fetchServers().catch(() => {})
+    fetchServers().catch(() => { })
   }, [fetchServers])
 
   const groups = useMemo(() => {
@@ -198,14 +198,14 @@ export default function Servers() {
       const response = await client.get(`/servers/${serverId}/connect-url`)
       window.location.href = response.data.connect_url
     } catch (error) {
-      setConnectError(getErrorMessage(error, 'Failed to launch connection'))
+      setConnectError(getErrorMessage(error, '启动连接失败'))
     } finally {
       setConnectLoadingId(null)
     }
   }
 
   const handleDelete = async (server) => {
-    const confirmed = window.confirm(`Delete server \"${server.name}\"?`)
+    const confirmed = window.confirm(`确定要删除服务器 \"${server.name}\" 吗？`)
     if (!confirmed) {
       return
     }
@@ -224,8 +224,8 @@ export default function Servers() {
       <div className="rounded-3xl border border-[#2a2d3a] bg-[#0f1117] p-6 md:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-3xl font-semibold text-white">Servers</h2>
-            <p className="mt-2 text-sm text-slate-400">Manage server connections and launch your local Telescope Agent.</p>
+            <h2 className="text-3xl font-semibold text-white">服务器</h2>
+            <p className="mt-2 text-sm text-slate-400">管理服务器连接并启动本地 Telescope 代理。</p>
           </div>
           <button
             type="button"
@@ -233,25 +233,24 @@ export default function Servers() {
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#3b82f6] px-4 py-3 text-sm font-medium text-white transition hover:bg-[#2563eb]"
           >
             <Plus size={16} />
-            Add Server
+            添加服务器
           </button>
         </div>
 
         <div className="mt-6 flex flex-wrap gap-2">
           {groups.map((group) => {
             const active = selectedGroup === group
-            const label = group === 'all' ? 'All' : group
+            const label = group === 'all' ? '全部' : group
 
             return (
               <button
                 key={group}
                 type="button"
                 onClick={() => setSelectedGroup(group)}
-                className={`rounded-full border px-4 py-2 text-sm transition ${
-                  active
+                className={`rounded-full border px-4 py-2 text-sm transition ${active
                     ? 'border-[#3b82f6] bg-[#3b82f6]/15 text-white'
                     : 'border-[#2a2d3a] bg-[#1a1d27] text-slate-300 hover:border-slate-500 hover:text-white'
-                }`}
+                  }`}
               >
                 {label}
               </button>
@@ -267,12 +266,12 @@ export default function Servers() {
 
         {loading ? (
           <div className="mt-6 rounded-2xl border border-[#2a2d3a] bg-[#1a1d27] px-6 py-16 text-center text-sm text-slate-400">
-            Loading servers...
+            加载服务器中...
           </div>
         ) : filteredServers.length === 0 ? (
           <div className="mt-6 rounded-2xl border border-dashed border-[#2a2d3a] bg-[#1a1d27] px-6 py-16 text-center">
-            <h3 className="text-lg font-medium text-white">No servers yet</h3>
-            <p className="mt-2 text-sm text-slate-400">Add your first server to start connecting through Telescope.</p>
+            <h3 className="text-lg font-medium text-white">暂无服务器</h3>
+            <p className="mt-2 text-sm text-slate-400">添加您的第一台服务器以开始通过 Telescope 连接。</p>
           </div>
         ) : (
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -301,13 +300,13 @@ export default function Servers() {
                       <span className="rounded-full border border-[#2a2d3a] bg-[#11141c] px-2.5 py-1">{server.group}</span>
                     ) : null}
                     {server.has_password ? (
-                      <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-300">Password set</span>
+                      <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-300">已设置密码</span>
                     ) : (
-                      <span className="rounded-full border border-slate-600 bg-slate-800/50 px-2.5 py-1 text-slate-400">No password</span>
+                      <span className="rounded-full border border-slate-600 bg-slate-800/50 px-2.5 py-1 text-slate-400">无密码</span>
                     )}
                   </div>
 
-                  <p className="mt-4 truncate text-sm text-slate-400">{server.notes || 'No notes provided'}</p>
+                  <p className="mt-4 truncate text-sm text-slate-400">{server.notes || '暂无备注'}</p>
 
                   <div className="mt-5 flex items-center gap-2">
                     <button
@@ -317,13 +316,13 @@ export default function Servers() {
                       className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#3b82f6] px-3 py-2 text-sm font-medium text-white transition hover:bg-[#2563eb] disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       <Power size={15} />
-                      {connectLoadingId === server.id ? 'Connecting...' : 'Connect'}
+                      {connectLoadingId === server.id ? '连接中...' : '连接'}
                     </button>
                     <button
                       type="button"
                       onClick={() => openEditModal(server)}
                       className="inline-flex items-center justify-center rounded-xl border border-[#2a2d3a] bg-[#11141c] p-2.5 text-slate-300 transition hover:border-slate-500 hover:text-white"
-                      aria-label={`Edit ${server.name}`}
+                      aria-label={`编辑 ${server.name}`}
                     >
                       <Edit3 size={16} />
                     </button>
@@ -331,7 +330,7 @@ export default function Servers() {
                       type="button"
                       onClick={() => handleDelete(server)}
                       className="inline-flex items-center justify-center rounded-xl border border-rose-500/30 bg-rose-500/10 p-2.5 text-rose-200 transition hover:bg-rose-500/20"
-                      aria-label={`Delete ${server.name}`}
+                      aria-label={`删除 ${server.name}`}
                     >
                       <Trash2 size={16} />
                     </button>
@@ -348,16 +347,16 @@ export default function Servers() {
           <div className="max-h-full w-full max-w-2xl overflow-y-auto rounded-3xl border border-[#2a2d3a] bg-[#1a1d27] p-6 shadow-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-2xl font-semibold text-white">{mode === 'create' ? 'Add Server' : 'Edit Server'}</h3>
+                <h3 className="text-2xl font-semibold text-white">{mode === 'create' ? '添加服务器' : '编辑服务器'}</h3>
                 <p className="mt-1 text-sm text-slate-400">
-                  {mode === 'create' ? 'Create a new server connection.' : 'Update server details. Leave secrets blank to keep current values.'}
+                  {mode === 'create' ? '创建新的服务器连接。' : '更新服务器详细信息。将凭据留空以保留当前值。'}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={closeModal}
                 className="inline-flex items-center justify-center rounded-xl border border-[#2a2d3a] bg-[#11141c] p-2 text-slate-300 transition hover:border-slate-500 hover:text-white"
-                aria-label="Close modal"
+                aria-label="关闭弹窗"
               >
                 <X size={18} />
               </button>
@@ -365,16 +364,16 @@ export default function Servers() {
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-5">
               <div className="grid gap-4 md:grid-cols-2">
-                <FormField label="Name" required>
+                <FormField label="名称" required>
                   <input
                     value={form.name}
                     onChange={(event) => handleFieldChange('name', event.target.value)}
                     className="field"
-                    placeholder="Production API"
+                    placeholder="生产环境 API"
                     required
                   />
                 </FormField>
-                <FormField label="Protocol" required>
+                <FormField label="协议" required>
                   <select
                     value={form.protocol}
                     onChange={(event) => handleFieldChange('protocol', event.target.value)}
@@ -388,7 +387,7 @@ export default function Servers() {
                     ))}
                   </select>
                 </FormField>
-                <FormField label="Host" required>
+                <FormField label="主机名 / IP" required>
                   <input
                     value={form.host}
                     onChange={(event) => handleFieldChange('host', event.target.value)}
@@ -397,7 +396,7 @@ export default function Servers() {
                     required
                   />
                 </FormField>
-                <FormField label="Port" required>
+                <FormField label="端口" required>
                   <input
                     type="number"
                     min="1"
@@ -408,7 +407,7 @@ export default function Servers() {
                     required
                   />
                 </FormField>
-                <FormField label="Username" required>
+                <FormField label="用户名" required>
                   <input
                     value={form.username}
                     onChange={(event) => handleFieldChange('username', event.target.value)}
@@ -417,33 +416,33 @@ export default function Servers() {
                     required
                   />
                 </FormField>
-                <FormField label="Group">
+                <FormField label="分组">
                   <input
                     value={form.group}
                     onChange={(event) => handleFieldChange('group', event.target.value)}
                     className="field"
-                    placeholder="prod"
+                    placeholder="生产环境"
                   />
                 </FormField>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
-                <FormField label="Password">
+                <FormField label="密码">
                   <input
                     type="password"
                     value={form.password}
                     onChange={(event) => handleFieldChange('password', event.target.value)}
                     className="field"
-                    placeholder={mode === 'edit' ? '••••••  留空则保留现有密码' : 'Optional'}
+                    placeholder={mode === 'edit' ? '••••••  留空则保留现有密码' : '可选'}
                   />
                 </FormField>
                 {form.protocol === 'ssh' ? (
-                  <FormField label="Private Key">
+                  <FormField label="私钥">
                     <textarea
                       value={form.private_key}
                       onChange={(event) => handleFieldChange('private_key', event.target.value)}
                       className="field min-h-32"
-                      placeholder={mode === 'edit' ? '留空则保留现有私钥' : 'Optional'}
+                      placeholder={mode === 'edit' ? '留空则保留现有私钥' : '可选'}
                     />
                   </FormField>
                 ) : (
@@ -451,12 +450,12 @@ export default function Servers() {
                 )}
               </div>
 
-              <FormField label="Notes">
+              <FormField label="备注">
                 <textarea
                   value={form.notes}
                   onChange={(event) => handleFieldChange('notes', event.target.value)}
                   className="field min-h-28"
-                  placeholder="Optional notes"
+                  placeholder="可选备注"
                 />
               </FormField>
 
@@ -466,14 +465,14 @@ export default function Servers() {
                   onClick={closeModal}
                   className="rounded-xl border border-[#2a2d3a] bg-[#11141c] px-4 py-2.5 text-sm text-slate-300 transition hover:border-slate-500 hover:text-white"
                 >
-                  Cancel
+                  取消
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
                   className="rounded-xl bg-[#3b82f6] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#2563eb] disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {isSubmitting ? 'Saving...' : mode === 'create' ? 'Create Server' : 'Save Changes'}
+                  {isSubmitting ? '保存中...' : mode === 'create' ? '创建服务器' : '保存更改'}
                 </button>
               </div>
             </form>

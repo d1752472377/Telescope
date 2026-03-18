@@ -17,3 +17,4 @@ class User(Base):
 
     servers = relationship('Server', back_populates='owner', cascade='all, delete-orphan')
     vpns = relationship('VPN', back_populates='owner', cascade='all, delete-orphan')
+    settings = relationship('Settings', back_populates='owner', cascade='all, delete-orphan', uselist=False)

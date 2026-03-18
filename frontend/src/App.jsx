@@ -5,22 +5,15 @@ import Servers from './pages/Servers'
 import VPN from './pages/VPN'
 import Settings from './pages/Settings'
 
-const pageTitles = {
-  '/': 'Servers',
-  '/vpn': 'VPN',
-  '/settings': 'Settings',
-}
-
 export default function App() {
   const location = useLocation()
-  const isServersPage = location.pathname === '/'
 
   return (
-    <div className={`flex min-h-screen ${isServersPage ? 'bg-[#0f1117] text-slate-100' : 'bg-slate-100 text-slate-900'}`}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-base)', color: 'var(--text-primary)' }}>
       <Sidebar />
-      <div className="flex min-h-screen flex-1 flex-col">
-        <TopBar title={pageTitles[location.pathname] ?? 'Telescope'} />
-        <main className={`flex-1 p-6 lg:p-8 ${isServersPage ? 'bg-[#0f1117]' : ''}`}>
+      <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: '100vh', minWidth: 0 }}>
+        <TopBar pathname={location.pathname} />
+        <main style={{ flex: 1, padding: '24px', background: 'var(--bg-base)' }}>
           <Routes>
             <Route path="/" element={<Servers />} />
             <Route path="/vpn" element={<VPN />} />
