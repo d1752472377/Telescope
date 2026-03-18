@@ -1,0 +1,19 @@
+<svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="160" rx="32" fill="#0f1117"/>
+  <g transform="translate(80,80)">
+    <ellipse cx="0" cy="-10" rx="34" ry="13" fill="none" stroke="#378ADD" stroke-width="3.5" transform="rotate(-35)"/>
+    <ellipse cx="0" cy="-10" rx="20" ry="8" fill="none" stroke="#85B7EB" stroke-width="2.2" transform="rotate(-35)"/>
+    <ellipse cx="0" cy="-10" rx="8" ry="3.5" fill="#1a2744" stroke="#B5D4F4" stroke-width="1.2" transform="rotate(-35)"/>
+    <line x1="-28" y1="18" x2="4" y2="-4" stroke="#378ADD" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="4" y1="-4" x2="30" y2="-34" stroke="#378ADD" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-6" y1="8" x2="-16" y2="34" stroke="#85B7EB" stroke-width="2.8" stroke-linecap="round"/>
+    <line x1="6" y1="8" x2="6" y2="34" stroke="#85B7EB" stroke-width="2.8" stroke-linecap="round"/>
+    <line x1="-16" y1="34" x2="6" y2="34" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="30" cy="-36" r="6" fill="#378ADD"/>
+    <circle cx="30" cy="-36" r="2.5" fill="#E6F1FB"/>
+    <circle cx="-40" cy="26" r="1.8" fill="#378ADD" opacity="0.4"/>
+    <circle cx="36" cy="28" r="1.2" fill="#85B7EB" opacity="0.5"/>
+    <circle cx="-30" cy="-36" r="1.2" fill="#85B7EB" opacity="0.35"/>
+    <circle cx="20" cy="36" r="1" fill="#378ADD" opacity="0.4"/>
+  </g>
+</svg>
